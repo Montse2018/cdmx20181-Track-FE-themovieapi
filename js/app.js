@@ -7,11 +7,13 @@ window.getMovies = (api) => {
     fetch(api)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        console.log(data.Search);
+
     })
 }
 
 /*getMovies("82b3209c", "Game of Thrones")
+
 .then(function (response) {
     console.log(response);
     let title = response.Title;
