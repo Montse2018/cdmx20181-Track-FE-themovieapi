@@ -1,6 +1,7 @@
 const api = 'http://www.omdbapi.com/?apikey=82b3209c&s=Game+of+Thrones&plot=full&type=series'
 
 
+
 window.getMovies = (api) => {
     console.log('api');
     console.log(api);
@@ -15,6 +16,7 @@ window.getMovies = (api) => {
         let poster = '';
         let id = '';
             let info = data.Search;
+            console.log(info);
             for (series in info) {
                 let seriesOb = {};
                 if (info[series].poster == "N/A") {
@@ -37,31 +39,43 @@ window.getMovies = (api) => {
                 type = '';
                 year = '';
                 id = '';
+                console.log(seriesOb);
+                seriesPrint(seriesOb);
+                console.log(seriesPrint);
             }
-            printAll: (allSeries) => {
-                let seriesCard = document.getElementById('seriesCard').addEventListener("click", event => {
-                    //let seriesCard = document.getElementById('seriesCard');
-                    let card = '';
-                        for (let i =0; i<allSeries.length; i++){
-                            cards += `<div class = 'card'>
-                                <div class = 'row'>
-                                    <div class = "col sm-6">
-                                        <div class = "card">
-                                            <img src = "${allSeries[i].poster}">
+            //return seriesOb;
+            //console.log(movies);
+            //seriesPrint(allSeries);
+            }),
+            seriesPrint = (seriesOb) => {
+                let seriesCard = document.getElementById("seriesCard");
+                let cards = '';
+                for (let i=0; i<seriesOb.length; i++){
+                    cards += 
+                    `<div class ="item">
+                                <div class= "row">
+                                    <div class="col sm-6">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                <img src="${seriesOb[i].poster}">
+                                            </div>
                                         </div>
-                                        <div class="card-contenet">
-                                            <span class="card-title">${allSeries[i].title}</span>
-                                            <p>${allSeries[i].year}</p>
+                                        <div class="card-container">
+                                            <span class="card-title">${seriesOb[i].title}</span>
+                                            <p>${seriesOb[i].year}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>`
-                        }
-                })
-                seriesCard.innerHTML = card;
+                        seriesCard.innerHTML = cards;
+                }
+                //seriesCard.innerHTML = cards;
+                return cards;
             }
-    });
+            
 }
+
+
 
 
 
